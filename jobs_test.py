@@ -29,7 +29,7 @@ class JobsTest(unittest.TestCase):
         name = Name(FirstName('Luke'), LastName('Skywalker'))
         self.jobseeker = Jobseeker(name, 1)
 
-        self.jreq = JReq(recruiter, 'Jedi', 1) #TITLE SHOULD BE CLASS
+        self.jreq = JReq(recruiter, 'Jedi', 1)
         self.resume = Resume('The force is strong with me.', 'Luke Skywalker')
         application1 = Application(Day(1), self.jobseeker, self.resume)
         self.jobseeker.apply(self.jreq, application1)
@@ -38,7 +38,7 @@ class JobsTest(unittest.TestCase):
         application2 = Application(Day(1), self.jobseeker)
         self.jobseeker.apply(self.ats, application2)
 
-        self.ats2 = ATS(recruiter, 'Sith', 3)
+        self.ats2 = ATS(recruiter, 'Sith2', 3)
         application3 = Application(Day(47), self.jobseeker)
         self.jobseeker.apply(self.ats2, application3)
 
@@ -64,6 +64,17 @@ class JobsTest(unittest.TestCase):
         jobs.add(self.ats)
         self.assertEqual('Luke Skywalker\n', str(jobs.seeAppliedJobseekers()))
 
+    def testIsThereJob(self):
+        jobs = Jobs()
+        jobs.add(self.jreq)
+        self.assertTrue(jobs.isThereJob(self.jreq))
+        self.assertFalse(jobs.isThereJob(self.ats))
+
+    def testAggregateStatisticsByJob(self):
+        jobs = Jobs()
+        jobs.add(self.jreq)
+        jobs.add(self.ats)
+        self.assertEqual('1 1\n2 1\n', str(jobs.aggregateStatisticsByJob())) #
 
 if __name__ == '__main__':
 	unittest.main()
