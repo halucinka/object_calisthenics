@@ -154,5 +154,33 @@ class Test_jobApplications(unittest.TestCase):
         #print(application1.resume.resumeString)
         self.assertRaises(Exception, JS1.apply(job1, application1))
 
+    def test_jobseekersWrongResume(self):
+        company = Company()
+
+        JS1firstName = FirstName('Luke')
+        JS1lastName = LastName('Skywalker')
+        JS1name = Name(JS1firstName, JS1lastName)
+        JS1 = Jobseeker(JS1name)
+
+        R1firstName = FirstName('Master')
+        R1lastName = LastName('Yoda')
+        R1name = Name(R1firstName, R1lastName)
+        R1 = Recruiter(R1name)
+
+        company.addRecruiter(R1)
+
+        company.addJobseeker(JS1)
+
+        job1 = Job(R1, 'Jedi')
+        job1req = job1.createJob('JReq')
+        job2 = Job(R1, 'Sith')
+        job2ATS = job2.createJob('ATS')
+
+        resumeJS1 = Resume('I am princess.', 'Leia')
+        application1 = Application(1, JS1, resumeJS1)
+
+
+        self.assertRaises(Exception, JS1.apply(job1, application1))
+
 if __name__ == '__main__':
 	unittest.main()

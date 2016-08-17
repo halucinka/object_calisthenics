@@ -21,9 +21,15 @@ class Applications:
     def add(self, application):
         self.applications.append(application)
 
-    def filterDay(self, day):
-        applicationsfilterDay = [app for app in self.applications if app.day == day]
-        return applicationsDayFilter
+    def filterByDay(self, day):
+        applicationsForDay = Application()
+        for app in self.applications:
+            if (app.day == day):
+                applicationsForDay.add(app)
+        return applicationsForDay
 
     def size(self):
-        return len(applications)
+        return len(self.applications)
+
+    def empty(self):
+        return (self.size() == 0)

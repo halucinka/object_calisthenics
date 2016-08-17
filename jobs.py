@@ -21,6 +21,9 @@ class Job(object):
     def toString(self):
         return self.title
 
+    def appliedAtDay(self, day):
+        return (not self.applications.empty())
+
 
 class JReq(Job):
 

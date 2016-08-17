@@ -11,6 +11,8 @@ class Jobseeker:
         return self.name.toString()
 
     def apply(self, job, application):
+        if not application.validName:
+            raise Exception('This is not your resume.')
         job.apply(application)
         self.appliedJobs.add(job)
 
