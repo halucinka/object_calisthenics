@@ -14,7 +14,13 @@ from applications import Application, Applications
 from company import Company
 import unittest
 
-class Test_jobApplications(unittest.TestCase):
+class IntegrationTest(unittest.TestCase):
+
+    def setUp(self):
+        print('zaciatok testu')
+
+    def tearDown(self):
+        print('koniec testu')
     def test(self):
         #company, 2 jobseekers, 2 recruiters, 1 job
         company = Company()

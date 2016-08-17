@@ -1,4 +1,6 @@
 from jobs import Jobs
+
+
 class Jobseeker:
 
     def __init__(self, name): # I broke rule #8 here!
@@ -6,9 +8,8 @@ class Jobseeker:
         self.savedJobs = Jobs()
         self.appliedJobs = Jobs()
 
-
-    def toString(self):
-        return self.name.toString()
+    def __str__(self):
+        return str(self.name)
 
     def apply(self, job, application):
         if not application.validName:
@@ -19,15 +20,14 @@ class Jobseeker:
     def saveJob(self, job):
         self.savedJobs.add(job)
 
-    def toStringSavedJobs(self):
+    def savedJobsToString(self):
         return self.savedJobs.toString()
 
-    def toStringAppliedJobs(self):
+    def appliedJobsToString(self):
         return self.appliedJobs.toString()
 
     def appliedJobsFilterDay(self, day):
         return self.appliedJobs.filterDay(day)
-
 
 
 class Jobseekers:

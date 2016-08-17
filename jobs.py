@@ -1,4 +1,6 @@
 from applications import Applications
+
+
 class Job(object):
 
     def __init__(self, recruiter, title):
@@ -9,20 +11,21 @@ class Job(object):
     def apply(self, application):
         pass # This function should not be called.
 
-    def createJob(self, type):
-        if (type == 'JReq'):
-            return JReq(self.recruiter, self.title)
-        if (type == 'ATS'):
-            return ATS(self.recruiter, self.title)
+#    def createJob(self, type):
+#        if (type == 'JReq'):
+#            return JReq(self.recruiter, self.title)
+#        if (type == 'ATS'):
+#            return ATS(self.recruiter, self.title)
 
-    def numberOfApplicants(self):
+    def numberOfApplications(self):
         return self.applications.size()
 
-    def toString(self):
+    def __str__(self):
         return self.title
 
     def appliedAtDay(self, day):
-        return (not self.applications.empty())
+        applicationsForDay = self.applications.filterByDay(day)
+        return (not applicationsForDay.empty())
 
 
 class JReq(Job):
@@ -34,7 +37,6 @@ class JReq(Job):
         if (not application.hasResume()):
             raise Exception('JReq application needs a resume.')
         self.applications.add(application)
-
 
 
 class ATS(Job):
@@ -56,12 +58,9 @@ class Jobs:
     def filterByDay(self, day): # I broke rule #1.
         jobsFilterByDay = Jobs()
         for job in self.jobs:
-            if (job.appliedAtDay):
+            if (job.appliedAtDay(day)):
                 jobsFilterByDay.add(job)
         return jobsFilterByDay
 
-    def toString(self):
-        string = ''
-        for job in self.jobs:
-            string += job.toString() + '\n'
-        return string
+    def __str__(self):
+        return '\n'.join([str(job) for job in self.jobs]) + '\n'

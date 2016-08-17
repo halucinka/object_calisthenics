@@ -3,7 +3,7 @@ class FirstName:
     def __init__(self, firstNameString):
         self.firstNameString = firstNameString
 
-    def toString(self):
+    def __str__(self):
         return self.firstNameString
 
 
@@ -12,7 +12,7 @@ class LastName:
     def __init__(self, lastNameString):
         self.lastNameString = lastNameString
 
-    def toString(self):
+    def __str__(self):
         return self.lastNameString
 
 
@@ -22,5 +22,5 @@ class Name:
         self.firstName = firstName
         self.lastName = lastName
 
-    def toString(self):
-        return (self.firstName.toString() + ' ' + self.lastName.toString())
+    def __str__(self):
+        return (str(self.firstName) + ' ' + str(self.lastName))

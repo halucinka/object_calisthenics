@@ -1,6 +1,6 @@
 class Application:
 
-    def __init__(self, day, jobseeker, *resume): # I broke rule #8 here. (3 variables)
+    def __init__(self, day, jobseeker, resume = None): # I broke rule #8 here. (3 variables)
         self.resume = resume
         self.day = day
         self.jobseeker = jobseeker
@@ -9,9 +9,8 @@ class Application:
         return (self.resume != None)
 
     def validName(self):
-        if (self.jobseeker.toString() != self.resume.nameString):
-            return False
-        return True
+        return self.resume.isMachingName(str(self.jobseeker))
+
 
 class Applications:
 
@@ -22,7 +21,7 @@ class Applications:
         self.applications.append(application)
 
     def filterByDay(self, day):
-        applicationsForDay = Application()
+        applicationsForDay = Applications()
         for app in self.applications:
             if (app.day == day):
                 applicationsForDay.add(app)
