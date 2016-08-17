@@ -1,4 +1,4 @@
-from applications import Applications
+from src.applications import Applications
 
 
 class Job(object):

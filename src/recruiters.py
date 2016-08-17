@@ -1,5 +1,5 @@
-from jobseekers import Jobseekers
-from jobs import Jobs
+from src.jobseekers import Jobseekers
+from src.jobs import Jobs
 class Recruiter:
 
     def __init__(self, name):

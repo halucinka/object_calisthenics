@@ -1,4 +1,4 @@
-from jobs import Jobs
+from src.jobs import Jobs
 
 
 class Jobseeker:

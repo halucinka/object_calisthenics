@@ -1,5 +1,6 @@
-from recruiters import Recruiters
-from jobseekers import Jobseekers
+from src.recruiters import Recruiters
+from src.jobseekers import Jobseekers
+
 class Company:
     def __init__(self):
         self.recruiters = Recruiters()
