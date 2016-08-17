@@ -14,6 +14,7 @@ from src.day import Day
 from src.jobs import Jobs
 from src.jreq import JReq
 from src.ats import ATS
+from src.resume import Resume
 from src.application import Application
 
 
@@ -26,14 +27,20 @@ class JobsTest(unittest.TestCase):
         recruiter = Recruiter(name)
 
         name = Name(FirstName('Luke'), LastName('Skywalker'))
-        jobseeker = Jobseeker(name)
+        self.jobseeker = Jobseeker(name, 1)
 
-        self.jreq = JReq(recruiter, 'Jedi') #TITLE SHOULD BE CLASS
-        application1 = Application(Day(1), jobseeker)
+        self.jreq = JReq(recruiter, 'Jedi', 1) #TITLE SHOULD BE CLASS
+        self.resume = Resume('The force is strong with me.', 'Luke Skywalker')
+        application1 = Application(Day(1), self.jobseeker, self.resume)
+        self.jobseeker.apply(self.jreq, application1)
 
-        self.ats = ATS(recruiter, 'Sith')
-        application2 = Application(Day(47), jobseeker)
-        self.ats.apply(application2)
+        self.ats = ATS(recruiter, 'Sith', 2)
+        application2 = Application(Day(1), self.jobseeker)
+        self.jobseeker.apply(self.ats, application2)
+
+        self.ats2 = ATS(recruiter, 'Sith', 3)
+        application3 = Application(Day(47), self.jobseeker)
+        self.jobseeker.apply(self.ats2, application3)
 
     def tearDown(self):
         pass
@@ -48,8 +55,14 @@ class JobsTest(unittest.TestCase):
         jobs = Jobs()
         jobs.add(self.jreq)
         jobs.add(self.ats)
-        self.assertEqual('Sith\n', str(jobs.filterByDay(Day(47))))
+        jobs.add(self.ats2)
+        self.assertEqual('Jedi\nSith\n', str(jobs.filterByDay(Day(1))))
 
+    def testSeeJobseekers(self):
+        jobs = Jobs()
+        jobs.add(self.jreq)
+        jobs.add(self.ats)
+        self.assertEqual('Luke Skywalker\n', str(jobs.seeAppliedJobseekers()))
 
 
 if __name__ == '__main__':

@@ -1,5 +1,6 @@
 from src.jobseekers import Jobseekers
 from src.jobs import Jobs
+from src.statistics import Statistics
 
 class Recruiter:
 
@@ -7,8 +8,8 @@ class Recruiter:
         self.name = name
         self.jobs = Jobs()
 
-    def toString(self):
-        return self.name.toString()
+    def __str__(self):
+        return str(self.name)
 
     def post(self, job):
         self.jobs.add(job)
@@ -17,24 +18,22 @@ class Recruiter:
         return self.jobs
 
     def seeJobTitles(self):
-        return self.jobs.toString()
+        return str(self.jobs)
 
     def seeJobseekersForGivenJob(self, job):
-        jobseekers = Jobseekers() # je potom jobseekers stale singleton???
-        for app in job.applications:
-            jobseekers.add(app.jobseeker)
-        return jobseekers
+        return job.seeAppliedJobseekers()
 
     def seeJobseekersForGivenDay(self, day):
         jobseekers = Jobseekers()
         jobsForGivenDay = self.jobs.filterByDay(day)
-        for job in jobsForGivenDay:
-            for app in job.applications:
-                jobseekers.add(app.jobseeker)
+        return jobsForGivenDay.seeAppliedJobseekers()
 
     def seeJobseekersForGivenJobForGivenDay(self, job, day):
         jobseekers = Jobseekers()
         jobsForGivenDay = self.jobs.filterByDay(day)
-        if job in jobsForGivenDay:
+        if (jobsForGivenDay.isThereJob(job)):
             jobseekers = self.seeJobseekersForGivenJob(job)
         return jobseekers
+
+    def aggregateStatisticsByJob(self):
+        return self.jobs.aggregateStatisticsByJob()

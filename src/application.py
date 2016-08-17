@@ -9,4 +9,6 @@ class Application:
         return (self.resume != None)
 
     def validName(self):
+        if (self.resume == None):
+            return True
         return self.resume.isMachingName(str(self.jobseeker))

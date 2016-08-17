@@ -26,8 +26,8 @@ class JReqTest(unittest.TestCase):
         recruiter = Recruiter(name)
 
         name = Name(FirstName('Luke'), LastName('Skywalker'))
-        self.jobseeker = Jobseeker(name)
-        self.jreq = JReq(recruiter, 'Jedi') #TITLE SHOULD BE CLASS
+        self.jobseeker = Jobseeker(name, 1)
+        self.jreq = JReq(recruiter, 'Jedi', 1) #TITLE SHOULD BE CLASS
         self.day = Day(47)
 
     def tearDown(self):
@@ -54,6 +54,14 @@ class JReqTest(unittest.TestCase):
         application = Application(self.day, self.jobseeker, resume)
         self.jreq.apply(application)
         self.assertFalse(self.jreq.appliedAtDay(Day(1)))
+
+    def testSeeAppliedJobseekers(self):
+        resume = Resume('The force is strong with me.', 'Luke Skywalker')
+        application = Application(self.day, self.jobseeker, resume)
+        self.jreq.apply(application)
+        self.assertEqual('Luke Skywalker\n', str(self.jreq.seeAppliedJobseekers()))
+
+
 
 
 if __name__ == '__main__':

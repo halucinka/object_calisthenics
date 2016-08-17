@@ -1,3 +1,4 @@
+from src.jobseekers import Jobseekers
 class Applications:
 
     def __init__(self):
@@ -18,3 +19,9 @@ class Applications:
 
     def empty(self):
         return (self.size() == 0)
+
+    def seeJobseekers(self):
+        jobseekers = Jobseekers()
+        for app in self.applications:
+            jobseekers.add(app.jobseeker)
+        return jobseekers

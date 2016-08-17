@@ -1,5 +1,6 @@
 from src.recruiters import Recruiters
 from src.jobseekers import Jobseekers
+from src.statistics import Statistics
 
 class Company:
     def __init__(self):
@@ -12,23 +13,14 @@ class Company:
     def addRecruiter(self, recruiter):
         self.recruiters.add(recruiter)
 
-    def toStringJobseekers(self):
-        return self.jobseekers.toString()
+    def displayJobseekers(self):
+        return str(self.jobseekers)
 
-    def toStringRecruiters(self):
-        return self.recruiters.toString()
+    def displayRecruiters(self):
+        return str(self.recruiters)
 
     def seeJobseekersForGivenDay(self, day):
-        jobseekersForGivenDay = Jobseekers()
-        for jobseeker in self.jobseekers:
-            if (jobseeker.appliedJobsFilterDay(day) != None):
-                jobseekersForGivenDay.add(jobseeker)
-        return jobseekersForGivenDay
+        return self.jobseekers.jobseekersForGivenDay(day)
 
-    def aggregateStatisticsByJob(self, job): # I broke rule #1 and #5 (playing with privates).
-        #returns dictionary(named statistics) - key = job (job needs some id #TODO), value = number of applications
-        for jobseeker in self.jobseekers:
-            for job in jobseeker.appliedJobs:
-                if job not in statistics:
-                    statistics[job] = 0
-                statistics[job] += job.numberOfApplicants()
+    def aggregateStatisticsByJob(self):
+        return self.recruiters.aggregateStatisticsByJob()

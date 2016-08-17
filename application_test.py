@@ -21,7 +21,7 @@ class ApplicationTest(unittest.TestCase):
         lastName = LastName('Skywalker')
         name = Name(firstName, lastName)
 
-        self.jobseeker = Jobseeker(name)
+        self.jobseeker = Jobseeker(name, 1)
         self.resume = Resume('The force is strong with me.', 'Luke Skywalker')
         self.resume2 = Resume('The force is strong with me.', 'Leia Organa')
 

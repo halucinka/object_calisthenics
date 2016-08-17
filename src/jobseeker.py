@@ -2,16 +2,17 @@ from src.jobs import Jobs
 
 class Jobseeker:
 
-    def __init__(self, name): # I broke rule #8 here!
+    def __init__(self, name, id): # I broke rule #8 here!
         self.name = name
         self.savedJobs = Jobs()
         self.appliedJobs = Jobs()
+        self.id = id
 
     def __str__(self):
         return str(self.name)
 
     def apply(self, job, application):
-        if not application.validName:
+        if not (application.validName()):
             raise Exception('This is not your resume.')
         job.apply(application)
         self.appliedJobs.add(job)
@@ -19,11 +20,14 @@ class Jobseeker:
     def saveJob(self, job):
         self.savedJobs.add(job)
 
-    def savedJobsToString(self):
-        return self.savedJobs.toString()
+    def seeAppliedJobs(self):
+        return self.appliedJobs
 
-    def appliedJobsToString(self):
-        return self.appliedJobs.toString()
+    def seeSavedJobs(self):
+        return self.savedJobs
 
-    def appliedJobsFilterDay(self, day):
-        return self.appliedJobs.filterDay(day)
+    def appliedJobsFilterByDay(self, day):
+        return self.appliedJobs.filterByDay(day)
+
+    def isMatchingJobseeker(self, jobseeker):
+        return (jobseeker.id == self.id)

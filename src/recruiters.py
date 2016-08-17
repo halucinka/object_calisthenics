@@ -1,8 +1,8 @@
 from src.jobseekers import Jobseekers
 from src.jobs import Jobs
+from src.statistics import Statistics
 
 class Recruiters:
-    '''singleton'''
 
     def __init__(self):
         self.recruiters = []
@@ -10,8 +10,11 @@ class Recruiters:
     def add(self, recruiter):
         self.recruiters.append(recruiter)
 
-    def toString(self):
-        toString = ''
+    def __str__(self):
+        return '\n'.join(str(recruiter) for recruiter in self.recruiters) + '\n'
+
+    def aggregateStatisticsByJob(self):
+        statistics = Statistics()
         for recruiter in self.recruiters:
-            toString += recruiter.toString() + '\n'
-        return toString
+            statistics.addOtherStatistics(recruiter.aggregateStatisticsByJob)
+        return statistics

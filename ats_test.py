@@ -25,8 +25,8 @@ class ATSTest(unittest.TestCase):
         recruiter = Recruiter(name)
 
         name = Name(FirstName('Luke'), LastName('Skywalker'))
-        self.jobseeker = Jobseeker(name)
-        self.ats = ATS(recruiter, 'Jedi') #TITLE SHOULD BE CLASS
+        self.jobseeker = Jobseeker(name, 1)
+        self.ats = ATS(recruiter, 'Jedi', 1) #TITLE SHOULD BE CLASS
         self.day = Day(47)
 
     def tearDown(self):
@@ -47,7 +47,10 @@ class ATSTest(unittest.TestCase):
         self.ats.apply(application)
         self.assertFalse(self.ats.appliedAtDay(Day(1)))
 
-
+    def testSeeJobseekers(self):
+        application = Application(self.day, self.jobseeker)
+        self.ats.apply(application)
+        self.assertEqual('Luke Skywalker\n', str(self.ats.seeAppliedJobseekers()))
 
 
 if __name__ == '__main__':
