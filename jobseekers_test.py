@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-Unit tests for recruiter.py
+Unit tests for jobseekers.py
 '''
 from src.name import Name, FirstName, LastName
 from src.jobseeker import Jobseeker

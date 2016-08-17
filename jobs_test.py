@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-# Lucia Pal, 2016
-
 '''
 Unit tests for jobs.py
 '''

@@ -19,7 +19,5 @@ class Jobseekers:
                 jobseekersForGivenDay.add(jobseeker)
         return jobseekersForGivenDay
 
-
-
     def __str__(self):
         return '\n'.join(str(jobseeker) for jobseeker in self.jobseekers) + '\n'
