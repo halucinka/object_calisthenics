@@ -1,20 +1,5 @@
-class FirstName:
-
-    def __init__(self, firstNameString):
-        self.firstNameString = firstNameString
-
-    def __str__(self):
-        return self.firstNameString
-
-
-class LastName:
-
-    def __init__(self, lastNameString):
-        self.lastNameString = lastNameString
-
-    def __str__(self):
-        return self.lastNameString
-
+from src.firstName import FirstName
+from src.lastName import LastName
 
 class Name:
 

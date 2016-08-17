@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-# Lucia Pal, 2016
-
 '''
 Unit tests for day.py
 '''
-from day import Day
+from src.day import Day
 import unittest
 
 class DayTest(unittest.TestCase):

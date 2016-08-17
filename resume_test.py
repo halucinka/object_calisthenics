@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-# Lucia Pal, 2016
-
 '''
 Unit tests for resume.py
 '''
-from resume import Resume
+from src.resume import Resume
 
 import unittest
 
